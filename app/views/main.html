@@ -2,12 +2,20 @@
   <div flex-gt-sm="50" flex>
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
-        <span>Chat</span>
-        <span ng-bind="main.name">Chargement...</span>
+        <span>Chat de</span>
+        <span ng-bind="main.userA.name">???</span>
       </div>
     </md-toolbar>
-    <md-content ng-repeat="contact in main.contactList">
-      {{ contact.name }}
+    <md-content ng-repeat="contact in main.userA.contactList">
+      <md-list flex>
+        <md-list-item class="md-2-line" ng-repeat="message in contact.messageList" ng-click="null">
+          <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}" />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ message.who }}</h3>
+            <p>{{ message.text }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
     </md-content>
   </div>
 </div>
