@@ -1,12 +1,12 @@
 <div ng-cloak layout-gt-sm="row" layout="column">
-  <div flex-gt-sm="50" flex>
+  <div flex-gt-sm="50" flex ng-repeat="user in main.userList">
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>Chat de</span>
-        <span ng-bind="main.userA.name">???</span>
+        <span ng-bind="user.name">???</span>
       </div>
     </md-toolbar>
-    <md-content ng-repeat="contact in main.userA.contactList">
+    <md-content ng-repeat="contact in user.contactList">
       <md-list flex>
         <md-list-item class="md-2-line" ng-repeat="message in contact.messageList" ng-click="null">
           <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}" />
