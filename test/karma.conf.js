@@ -7,6 +7,9 @@ module.exports = function(config) {
   'use strict';
 
   config.set({
+    preprocessors: {
+      'test/mock/**/*.json': ['ng-json2js']
+    },
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -32,7 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
-      "test/mock/**/*.js",
+      "test/mock/**/*.json",
       "test/spec/**/*.js"
     ],
 
@@ -58,7 +61,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+      'karma-ng-json2js-preprocessor'
     ],
 
     // Continuous Integration mode
