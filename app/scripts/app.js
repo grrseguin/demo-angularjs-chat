@@ -16,6 +16,16 @@ angular
     'ngMessages',
     'ngMaterial'
   ])
+  .config([
+    '$mdThemingProvider',
+    function(
+      $mdThemingProvider
+    ) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('blue')
+        .accentPalette('grey');
+    }
+  ])
   .run(
     /**
      * [run](https://docs.angularjs.org/api/ng/type/angular.Module#run) method of angular module.
@@ -24,8 +34,8 @@ angular
      * @return {void}
      */
     function(
-    _   // jshint ignore:line
-   ){
+      _ // jshint ignore:line
+    ) {
 
-  }
-);
+    }
+  );

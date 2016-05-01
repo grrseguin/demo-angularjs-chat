@@ -1,5 +1,5 @@
-<div ng-cloak layout-gt-sm="row" layout="column">
-  <div flex-gt-sm="50" flex ng-repeat="user in ::main.userList">
+<div id="chat" ng-cloak layout-gt-sm="row" layout="column">
+  <div flex-gt-sm="50" flex ng-repeat="user in ::main.userList" layout-margin>
     <md-toolbar layout="row" class="md-hue-3">
       <div class="md-toolbar-tools">
         <span>Chat de</span>
@@ -16,7 +16,7 @@
           </div>
         </md-list-item>
         <md-divider></md-divider>
-        <form name="user.form" ng-submit="::user.submit( contact )">
+        <form name="user.form" ng-submit="::user.submit( contact )" layout-gt-sm="row" layout="column">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Nouveau message</label>
             <input md-maxlength="30" required name="newText" ng-model="user.newText" />

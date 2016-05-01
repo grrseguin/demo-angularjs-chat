@@ -9,3 +9,12 @@
 body {
   padding: 0;
 }
+#chat{
+  > div{
+    .md-toolbar-tools{
+      span:nth-child(2){
+        margin-left: .25em;
+      }
+    }
+  }
+}

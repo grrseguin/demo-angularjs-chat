@@ -83,7 +83,7 @@ angular.module('demoAngularjsChatApp')
                      * @return {void}
                      */
                     function(messageList) {
-                      contact.messageList = messageList
+                      contact.messageList = messageList;
                     },
                     /**
                      * Echec callback function for a list of messages
