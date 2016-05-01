@@ -11,8 +11,8 @@ describe('Service: User', function () {
     User = _User_;
   }));
 
-  it('should do something', function () {
-    expect(!!User).toBe(true);
+  it('should expose the expected method', function () {
+    expect(typeof User.get === 'function').toBe(true);
   });
 
 });

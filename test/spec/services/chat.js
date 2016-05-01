@@ -11,8 +11,9 @@ describe('Service: Chat', function () {
     Chat = _Chat_;
   }));
 
-  it('should do something', function () {
-    expect(!!Chat).toBe(true);
+  it('should expose the expected method', function () {
+    expect(typeof Chat.get === 'function').toBe(true);
+    expect(typeof Chat.save === 'function').toBe(true);
   });
 
 });
