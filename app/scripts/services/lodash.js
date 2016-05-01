@@ -8,13 +8,12 @@
  * Factory in the demoAngularjsChatApp.
  */
 angular.module('demoAngularjsChatApp')
-  .factory('_', [
+  .factory('Lodash', [
     '$window',
     function($window) {
       var
-        _ = $window._;
-      delete($window._);
+        Lodash = $window._;
       // Public API here
-      return (_);
+      return Lodash;
     }
   ]);

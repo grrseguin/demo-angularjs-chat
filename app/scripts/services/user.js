@@ -5,12 +5,12 @@
  * @name demoAngularjsChatApp.User
  * @description
  * # User [$resource](https://docs.angularjs.org/api/ngResource/service/$resource)
- * Factory in the demoAngularjsChatApp.
+ * Service in the demoAngularjsChatApp.
  *
  * Handle the user data
  */
 angular.module('demoAngularjsChatApp')
-  .factory('User', [
+  .service('User', [
     '$resource',
     function(
       $resource

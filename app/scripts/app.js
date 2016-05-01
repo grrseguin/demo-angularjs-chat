@@ -25,17 +25,4 @@ angular
         .primaryPalette('blue')
         .accentPalette('grey');
     }
-  ])
-  .run(
-    /**
-     * [run](https://docs.angularjs.org/api/ng/type/angular.Module#run) method of angular module.
-     *
-     * @param  {object} _ Could allow to "erase" the global reference to the lodash library
-     * @return {void}
-     */
-    function(
-      _ // jshint ignore:line
-    ) {
-
-    }
-  );
+  ]);

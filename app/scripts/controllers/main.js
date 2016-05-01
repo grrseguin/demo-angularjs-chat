@@ -10,7 +10,7 @@
 angular.module('demoAngularjsChatApp')
   .controller('MainCtrl', [
     '$log',
-    '_',
+    'Lodash',
     'User',
     'Chat',
     function(
