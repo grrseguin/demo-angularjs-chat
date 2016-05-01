@@ -20,29 +20,23 @@ angular.module('demoAngularjsChatApp')
       Chat
     ) {
       var
-        /**
-         * reference to this Controller
-         *
-         * @type {Object}
-         */
+      /**
+       * reference to this Controller
+       *
+       * @type {Object}
+       */
         main = this,
         /**
-         * Class of a Message
-         * A message belongs to a `Chat`
-         * Must be called with the `new` operator
+         * Format the message to a `Chat`
          *
-         * @param  {Boolean} me     True if the message matches to the current `User`, otherwise false
+         * @param  {Boolean} me     True if the message belongs to the current `User`, otherwise false
          * @param  {String} text    Message to send
-         * @param  {Object} user    Current `User`
-         * @param  {Object} contact receiver `User`
-         * @return {Object}         Instance of a new message
+         * @return {Object}         Instance of a new `Chat`
          */
-        Message = function(me, text, user, contact) {
+        format = function(me, text) {
           return {
             me: me,
             text: text,
-            who: me ? user.name : contact.name,
-            face: me ? user.face : contact.face
           };
         },
         /**
@@ -89,9 +83,7 @@ angular.module('demoAngularjsChatApp')
                      * @return {void}
                      */
                     function(messageList) {
-                      contact.messageList = _.map(messageList, function(message) {
-                        return new Message(message.me, message.text, user, contact);
-                      });
+                      contact.messageList = messageList
                     },
                     /**
                      * Echec callback function for a list of messages
@@ -122,7 +114,7 @@ angular.module('demoAngularjsChatApp')
              */
             user.form = {};
             /**
-             * Add a new Message in the Chat of the current `User` and the receiver `User`
+             * Add a new Chat in the Chat of the current `User` and the contact `User`
              *
              * @param  {Object} contact `User` in the current `User`'s list of contact
              * @return {void}
@@ -131,7 +123,8 @@ angular.module('demoAngularjsChatApp')
               if (this.form.$valid) {
                 try {
                   var
-                    newMessage = new Message(true, this.newText, this, contact),
+                    newUserChat = new Chat(format(true, this.newText)),
+                    newContactChat = new Chat(format(false, this.newText)),
                     /**
                      * receiver `User`
                      *
@@ -140,18 +133,57 @@ angular.module('demoAngularjsChatApp')
                     destUser = main.userList[_.findIndex(main.userList, {
                       id: contact.id
                     })];
-                  contact.messageList.push(newMessage);
+                  contact.messageList.push(newUserChat);
+                  newUserChat.$save({
+                      userId: this.id,
+                      contactId: contact.id
+                    },
+                    /**
+                     * Add a new `Chat` for the current user
+                     * Success callback function
+                     *
+                     * @return {void}
+                     */
+                    function() {},
+                    /**
+                     * Echec callback function
+                     *
+                     * @param  {Object} response HTML query response of the remote server
+                     * @return {void}
+                     */
+                    function(response) {
+                      $log.error(response.data);
+                    }
+                  );
                   /**
-                   * I could use a directive to send the new message to The
-                   * receiver's Chat. But to avoid two digest cycles, i prefer
+                   * I could use a directive to update the view of the contact's Chat.
+                   * But to avoid two digest cycles, i prefer
                    * to set directly the good `User` object.
-                   *
-                   * in the real life, i should to use the `Chat` Factory
-                   * with the `$save` method.
                    */
                   destUser.contactList[_.findIndex(destUser.contactList, {
                     id: this.id
-                  })].messageList.push(newMessage);
+                  })].messageList.push(newContactChat);
+                  newContactChat.$save({
+                      userId: contact.id,
+                      contactId: this.id
+                    },
+                    /**
+                     * Add a new `Chat` for the contact
+                     * Success callback function
+                     *
+                     * @return {void}
+                     */
+                    function() {},
+                    /**
+                     * Echec callback function
+                     *
+                     * @param  {Object} response HTML query response of the remote server
+                     * @return {void}
+                     */
+                    function(response) {
+                      $log.error(response.data);
+                    }
+                  );
                 } catch (e) {
                   $log.error(e.message);
                 } finally {
@@ -165,7 +197,7 @@ angular.module('demoAngularjsChatApp')
             };
           },
           /**
-           * Echec callback function for the first Chat
+           * Echec callback function
            *
            * @param  {Object} response HTML query response of the remote server
            * @return {void}

@@ -5,12 +5,12 @@
  * @name demoAngularjsChatApp.Chat
  * @description
  * # Chat [$resource](https://docs.angularjs.org/api/ngResource/service/$resource)
- * Factory in the demoAngularjsChatApp.
+ * Service in the demoAngularjsChatApp.
  *
  * Handle the chat's data
  */
 angular.module('demoAngularjsChatApp')
-  .factory('Chat', [
+  .service('Chat', [
     '$resource',
     function(
       $resource
