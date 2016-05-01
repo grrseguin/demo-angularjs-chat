@@ -13,6 +13,7 @@ angular
     'ngResource',
     'ngAnimate',
     'ngAria',
+    'ngMessages',
     'ngMaterial'
   ])
   .run(

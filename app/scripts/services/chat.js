@@ -7,7 +7,7 @@
  * # Chat [$resource](https://docs.angularjs.org/api/ngResource/service/$resource)
  * Factory in the demoAngularjsChatApp.
  *
- * Handle the chat data
+ * Handle the chat's data
  */
 angular.module('demoAngularjsChatApp')
   .factory('Chat', [

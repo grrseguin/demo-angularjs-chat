@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: ', function () {
+describe('Service: _', function () {
 
   // load the service's module
   beforeEach(module('demoAngularjsChatApp'));
 
   // instantiate service
-  var ;
-  beforeEach(inject(function (__) {
-     = __;
+  var _;
+  beforeEach(inject(function (___) {
+    _ = ___;
   }));
 
   it('should do something', function () {
-    expect(!!).toBe(true);
+    expect(!!_).toBe(true);
   });
 
 });

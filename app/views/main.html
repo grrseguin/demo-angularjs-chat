@@ -11,10 +11,23 @@
         <md-list-item class="md-2-line" ng-repeat="message in contact.messageList" ng-click="null">
           <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}" />
           <div class="md-list-item-text" layout="column">
-            <h3>{{ message.who }}</h3>
-            <p>{{ message.text }}</p>
+            <h3 ng-bind="message.who === user.name ? 'Moi' : message.who">...</h3>
+            <p ng-bind="message.text">...</p>
           </div>
         </md-list-item>
+        <md-divider></md-divider>
+        <form name="user.form" ng-submit="user.submit( contact )">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Nouveau message</label>
+            <input md-maxlength="30" required name="newText" ng-model="user.newText" />
+            <div class="hint" ng-if="user.form.newText.$untouched">Avez-vous un message à transmettre à <span ng-bind="contact.name"></span> ?</div>
+            <div ng-messages="user.form.newText.$error">
+              <div ng-message="required">La saisie d'un message est obligatoire.</div>
+              <div ng-message="md-maxlength">Votre message ne doit pas dépasser 30 caractères.</div>
+            </div>
+          </md-input-container>
+          <md-button type="submit">Envoyer</md-button>
+        </form>
       </md-list>
     </md-content>
   </div>
